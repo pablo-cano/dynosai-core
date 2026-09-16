@@ -1,68 +1,32 @@
-\# DynosAI Core
-
-
+# DynosAI Core
 
 DynosAI Core is the reusable core of DynosAI.
 
+The project is developed incrementally: each step adds one small, complete, tested capability while keeping the repository usable and releasable.
 
+> **Status:** Early development  
+> **Current release:** `v0.0.1`
 
-The project is being developed incrementally, with each release adding one
+## Current capabilities
 
-small, complete, verified capability.
+Version `0.0.1` provides:
 
+- Installable Python distribution: `dynosai-core`
+- Python import namespace: `dynosai`
+- Command-line entry point: `dynos`
+- Deterministic version reporting with `dynos --version`
+- Automated offline tests
+- Buildable wheel and source distributions
 
+Project inspection, Git integration, Spec Kit integration, Grok Build integration, execution runtimes, persistence, service APIs, and application functionality are not part of `0.0.1`.
 
-\## Current version
+## Requirements
 
+- Python 3.11 or newer
 
+## Development
 
-\*\*0.0.1 — Core Package Bootstrap\*\*
-
-
-
-The current release provides:
-
-
-
-\- an installable Python package named `dynosai-core`;
-
-\- the Python import namespace `dynosai`;
-
-\- the `dynos` command-line entry point;
-
-\- deterministic version reporting through `dynos --version`;
-
-\- automated offline tests;
-
-\- buildable wheel and source distributions.
-
-
-
-No project inspection, Git integration, Spec Kit integration, Grok Build
-
-integration, execution runtime, persistence, service API, or application
-
-functionality is included yet.
-
-
-
-\## Requirements
-
-
-
-\- Python 3.11 or newer
-
-
-
-\## Development setup
-
-
-
-Clone the repository and synchronize the development environment:
-
-
+Synchronize the development environment:
 
 ```bash
-
 uv sync
-
