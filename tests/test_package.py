@@ -5,7 +5,7 @@ import importlib.metadata
 
 import dynosai
 
-EXPECTED_VERSION = "0.0.2"
+EXPECTED_VERSION = "0.0.3"
 
 
 def test_import_succeeds() -> None:

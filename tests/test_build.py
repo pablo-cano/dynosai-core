@@ -7,7 +7,7 @@ import zipfile
 from pathlib import Path
 
 EXPECTED_NAME = "dynosai-core"
-EXPECTED_VERSION = "0.0.2"
+EXPECTED_VERSION = "0.0.3"
 WHEEL_NAME = f"dynosai_core-{EXPECTED_VERSION}-py3-none-any.whl"
 SDIST_NAME = f"dynosai_core-{EXPECTED_VERSION}.tar.gz"
 WHEEL_DIST_INFO = f"dynosai_core-{EXPECTED_VERSION}.dist-info"
@@ -46,6 +46,7 @@ def test_offline_build_produces_validated_artifacts(tmp_path: Path) -> None:
         assert "dynosai/__init__.py" in names
         assert "dynosai/cli.py" in names
         assert "dynosai/directory.py" in names
+        assert "dynosai/git.py" in names
 
         metadata = email.parser.Parser().parsestr(
             wheel.read(f"{WHEEL_DIST_INFO}/METADATA").decode("utf-8")
@@ -72,6 +73,7 @@ def test_offline_build_produces_validated_artifacts(tmp_path: Path) -> None:
         assert f"{root_prefix}src/dynosai/__init__.py" in members
         assert f"{root_prefix}src/dynosai/cli.py" in members
         assert f"{root_prefix}src/dynosai/directory.py" in members
+        assert f"{root_prefix}src/dynosai/git.py" in members
         top_level = {
             name[len(root_prefix) :].split("/", 1)[0] for name in members
         }

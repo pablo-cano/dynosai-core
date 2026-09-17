@@ -3,7 +3,7 @@
 import shutil
 import subprocess
 
-EXPECTED_OUTPUT_LINE = b"dynos 0.0.2"
+EXPECTED_OUTPUT_LINE = b"dynos 0.0.3"
 ACCEPTED_TERMINATIONS = tuple(
     EXPECTED_OUTPUT_LINE + terminator for terminator in (b"\n", b"\r\n")
 )
