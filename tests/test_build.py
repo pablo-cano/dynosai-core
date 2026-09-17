@@ -7,7 +7,7 @@ import zipfile
 from pathlib import Path
 
 EXPECTED_NAME = "dynosai-core"
-EXPECTED_VERSION = "0.0.1"
+EXPECTED_VERSION = "0.0.2"
 WHEEL_NAME = f"dynosai_core-{EXPECTED_VERSION}-py3-none-any.whl"
 SDIST_NAME = f"dynosai_core-{EXPECTED_VERSION}.tar.gz"
 WHEEL_DIST_INFO = f"dynosai_core-{EXPECTED_VERSION}.dist-info"
@@ -45,6 +45,7 @@ def test_offline_build_produces_validated_artifacts(tmp_path: Path) -> None:
         ], sorted(names)
         assert "dynosai/__init__.py" in names
         assert "dynosai/cli.py" in names
+        assert "dynosai/directory.py" in names
 
         metadata = email.parser.Parser().parsestr(
             wheel.read(f"{WHEEL_DIST_INFO}/METADATA").decode("utf-8")
@@ -55,7 +56,10 @@ def test_offline_build_produces_validated_artifacts(tmp_path: Path) -> None:
     assert metadata["Version"] == EXPECTED_VERSION
     assert metadata["Requires-Python"] == ">=3.11"
     assert not metadata.get_all("Requires-Dist")
-    assert "dynos = dynosai.cli:main" in entry_points
+    assert [
+        line for line in entry_points.splitlines()
+        if line and not line.startswith("[")
+    ] == ["dynos = dynosai.cli:main"]
 
     with tarfile.open(sdist_path) as sdist:
         members = sdist.getnames()
@@ -67,6 +71,7 @@ def test_offline_build_produces_validated_artifacts(tmp_path: Path) -> None:
         assert f"{root_prefix}pyproject.toml" in members
         assert f"{root_prefix}src/dynosai/__init__.py" in members
         assert f"{root_prefix}src/dynosai/cli.py" in members
+        assert f"{root_prefix}src/dynosai/directory.py" in members
         top_level = {
             name[len(root_prefix) :].split("/", 1)[0] for name in members
         }

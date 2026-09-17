@@ -5,11 +5,11 @@ DynosAI Core is the reusable core of DynosAI.
 The project is developed incrementally: each step adds one small, complete, tested capability while keeping the repository usable and releasable.
 
 > **Status:** Early development  
-> **Current release:** `v0.0.1`
+> **Current release:** `v0.0.2`
 
 ## Current capabilities
 
-Version `0.0.1` provides:
+Version `0.0.2` provides:
 
 - Installable Python distribution: `dynosai-core`
 - Python import namespace: `dynosai`
@@ -17,8 +17,10 @@ Version `0.0.1` provides:
 - Deterministic version reporting with `dynos --version`
 - Automated offline tests
 - Buildable wheel and source distributions
+- Read-only operating-directory resolution with `dynosai.directory.resolve_operating_directory`
+- Standard `ValueError`, `FileNotFoundError`, and `NotADirectoryError` failures for invalid directory inputs
 
-Project inspection, Git integration, Spec Kit integration, Grok Build integration, execution runtimes, persistence, service APIs, and application functionality are not part of `0.0.1`.
+Git integration, Spec Kit integration, Grok Build integration, execution runtimes, persistence, service APIs, and application functionality are not part of `0.0.2`.
 
 ## Requirements
 
@@ -30,3 +32,4 @@ Synchronize the development environment:
 
 ```bash
 uv sync
+```
